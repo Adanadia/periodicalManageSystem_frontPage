@@ -45,6 +45,7 @@ export default {
       console.log("token loaded")
     }
   },
+  //张福康是傻逼
   methods:{
     login:function(){
       this.axios.post("http://192.168.43.195:8081/userLogin",
