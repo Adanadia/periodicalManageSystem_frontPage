@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-clock>
     <el-container>
       <el-aside width="200px">Aside</el-aside>
       <el-container>
@@ -26,10 +26,11 @@
 
 <script>
 
+import axios from "axios";
+
 export default {
   name: 'app',
   components: {
-
   },
   data: ()=>({
     message:"rua",
@@ -45,8 +46,6 @@ export default {
       console.log("token loaded")
     }
   },
-  //张富康
-  //受不了沙币版本
   methods:{
     login:function(){
       this.axios.post("http://192.168.43.195:8081/userLogin",
@@ -73,6 +72,9 @@ export default {
 </script>
 
 <style>
+[v-clock]{
+  display: none;
+}
 .header{
   background-color: #B3C0D1;
   color: #333;
