@@ -37,6 +37,7 @@ export default {
     password:"",
     userinfojson:null,
   }),
+  //张福康是帅哥
   mounted:function(){
     let token = localStorage.getItem("token")
     if(token != null){
