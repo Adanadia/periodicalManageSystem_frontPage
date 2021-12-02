@@ -45,7 +45,7 @@ export default {
       console.log("token loaded")
     }
   },
-
+  //张富康还是沙币
   methods:{
     login:function(){
       this.axios.post("http://192.168.43.195:8081/userLogin",
