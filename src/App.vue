@@ -45,7 +45,7 @@ export default {
       console.log("token loaded")
     }
   },
-  //张富康还是沙币
+  //张富康
   //受不了沙币版本
   methods:{
     login:function(){
