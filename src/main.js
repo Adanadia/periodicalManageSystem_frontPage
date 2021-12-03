@@ -31,9 +31,35 @@ if(token != null){
   axios.defaults.headers.common['Authorization'] = token;
   console.log("token loaded")
 }
-else{
-  router.push({path:'/login'})
-}
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if(localStorage.getItem('token')){
+      next();
+    }else {
+      if(to.path === '/login'){
+        next();
+      }else {
+        next({
+          path:'/login'
+        })
+      }
+    }
+  }
+  else {
+    next();
+  }
+  if(to.fullPath === "/login"){
+    if(localStorage.getItem('token')){
+      next({
+        path:from.fullPath
+      });
+    }else {
+      next();
+    }
+  }
+});
+
 
 new Vue({
   el:'#app',

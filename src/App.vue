@@ -5,6 +5,7 @@
 </template>
 
 <script>
+document.getElementsByTagName("body")[0].style = "overflow: hidden;";
 export default {
   name: 'app',
   components: {
@@ -13,8 +14,9 @@ export default {
   methods:{
   }
 }
-
 </script>
 
+
 <style>
+
 </style>
