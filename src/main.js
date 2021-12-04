@@ -10,7 +10,7 @@ var qs = require('qs');
 
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
-axios.defaults.baseURL = '/api'
+axios.defaults.baseURL = '/api'//用假数据注释掉
 
 axios.interceptors.request.use(function (config) {
   console.log(config)

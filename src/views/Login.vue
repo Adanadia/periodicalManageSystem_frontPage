@@ -7,11 +7,13 @@
              label-width="0px"
              class="demo-ruleForm login-page">
       <h3 class="title">期刊借阅系统登录</h3>
+      <el-divider></el-divider>
       <el-form-item prop="usernum">
         <el-input type="text"
                   v-model="ruleForm2.usernum"
                   auto-complete="on"
                   placeholder="用户名"
+                  suffix-icon="el-icon-user"
         ></el-input>
       </el-form-item>
       <el-form-item prop="password">
@@ -19,21 +21,27 @@
                   v-model="ruleForm2.password"
                   auto-complete="new-password"
                   placeholder="密码"
+                  suffix-icon="el-icon-lock"
         ></el-input>
       </el-form-item>
-      <el-checkbox v-model="checked" class="rememberme" style="color: black">记住密码</el-checkbox>
-      <el-form-item style="width:100%;">
-        <el-button type="primary"
-                   style="width:45%;"
-                   @click.once="handleSubmit"
-                   :loading="logining"
-                   round
-        >登录</el-button>
-        <el-button type="primary"
-                   style="width:45%;"
-                   @click.once="register"
-                   round
-        >注册</el-button>
+      <el-row>
+        <el-col span="16">
+          <el-checkbox v-model="checked" class="rememberme" style="color: black">记住密码</el-checkbox>
+        </el-col>
+        <el-col span="8">
+          <el-button type="primary"
+                     style="width:100%;"
+                     @click.once="handleSubmit"
+                     :loading="logining"
+
+          >登录</el-button>
+        </el-col>
+      </el-row>
+      <el-form-item style="width:100%;margin-bottom: 0px">
+
+        <a @click.once="register" style="color: #1482f0" href="#">
+          注册新账号
+        </a>
       </el-form-item>
     </el-form>
   </div>
@@ -65,15 +73,15 @@ export default {
           this.axios.post('/userlogin', {
             user_num: this.ruleForm2.usernum,
             password: this.ruleForm2.password
-          }).then(data => {
-            if (data.data.status === 0) {
+          }).then(response => {
+            if (response.data.status === 0) {
               this.logining = true
-              localStorage.setItem("token", data.data.data.authorization)
+              localStorage.setItem("token", response.data.data.authorization)
               // this.axios.defaults.headers.common['Authorization'] = token
               this.$router.push({path: '/main'})
             } else {
               this.logining = false
-              this.$alert(data.data.msg, '提示', {
+              this.$alert(response.data.msg, '提示', {
                 confirmButtonText: '重新登录'
               })
             }
@@ -105,15 +113,22 @@ export default {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     margin: 180px auto;
-    width: 350px;
+    width: 280px;
     padding: 35px 35px 15px;
-    background-color: rgba(81, 136, 136, 0.25);
+    background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid #5188883F;
     box-shadow: 0 0 25px #5188883F;
 
   }
   label.el-checkbox.rememberme {
-    margin: 0px 0px 15px;
+    margin-top: 10px;
     text-align: left;
+  }
+  .title{
+    margin-top: 0px !important;
+    text-align: center;
+    font-weight: normal;
+    font-size: 150%;
+
   }
 </style>
