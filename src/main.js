@@ -35,15 +35,6 @@ if(token != null){
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
     if(localStorage.getItem('token')){
-      // axios.get('/information').then(response=>{
-      //   if(response.data.status === 0){
-      //     next()
-      //   }else{
-      //     next({
-      //       path:'/login'
-      //     })
-      //   }
-      // })
       next()
     }else {
       if(to.path === '/login'){

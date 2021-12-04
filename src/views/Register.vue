@@ -49,7 +49,8 @@
         <el-button type="primary"
                    style="width:100%;"
                    :loading="registering"
-                   @click="handleSubmit"
+                   @click.once="handleSubmit"
+                   round
         >确认注册</el-button>
       </el-form-item>
         <i class="el-icon-back" style="width: 100%" ><el-link href="/login"
@@ -160,7 +161,7 @@ export default {
 
 <style scoped>
 .login-container {
-  background-image: url("../assets/login/login.jpg");
+  background-image: url("../assets/login/loginImg.jpg");
   position: absolute;
   left: 0;
   top: 0;

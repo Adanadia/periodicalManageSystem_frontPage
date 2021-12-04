@@ -25,12 +25,14 @@
       <el-form-item style="width:100%;">
         <el-button type="primary"
                    style="width:45%;"
-                   @click="handleSubmit"
+                   @click.once="handleSubmit"
                    :loading="logining"
+                   round
         >登录</el-button>
         <el-button type="primary"
                    style="width:45%;"
-                   @click="register"
+                   @click.once="register"
+                   round
         >注册</el-button>
       </el-form-item>
     </el-form>
@@ -90,8 +92,8 @@ export default {
 
 <style scoped>
   .login-container {
-    background-image: url("../assets/login/login.jpg");
-  position: absolute;
+    background-image: url("../assets/login/loginImg.jpg");
+    position: absolute;
     left: 0;
     top: 0;
     width: 100%;
