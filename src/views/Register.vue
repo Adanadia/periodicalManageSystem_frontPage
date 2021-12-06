@@ -7,11 +7,13 @@
              label-width="0px"
              class="demo-ruleForm login-page">
       <h3 class="title">注册</h3>
+      <el-divider></el-divider>
       <el-form-item prop="usernum">
         <el-input type="text"
                   v-model="ruleForm.usernum"
                   auto-complete="off"
                   placeholder="用户名"
+                  suffix-icon="el-icon-user"
         ></el-input>
       </el-form-item>
       <el-form-item prop="username">
@@ -19,6 +21,7 @@
                   v-model="ruleForm.username"
                   auto-complete="off"
                   placeholder="昵称"
+                  suffix-icon="el-icon-user-solid"
         ></el-input>
       </el-form-item>
       <el-form-item prop="useremail">
@@ -26,6 +29,7 @@
                   v-model="ruleForm.useremail"
                   auto-complete="off"
                   placeholder="邮箱"
+                  suffix-icon="el-icon-phone-outline"
         ></el-input>
       </el-form-item>
       <el-form-item prop="password">
@@ -33,13 +37,15 @@
                   v-model="ruleForm.password"
                   auto-complete="off"
                   placeholder="密码"
+                  suffix-icon="el-icon-lock"
         ></el-input>
       </el-form-item>
       <el-form-item prop="passwordConfirm">
         <el-input type="password"
                   v-model="ruleForm.passwordConfirm"
                   auto-complete="off"
-                  placeholder="重复密码密码"
+                  placeholder="重复输入密码"
+                  suffix-icon="el-icon-lock"
         ></el-input>
       </el-form-item>
         <el-checkbox v-model="checked" class="verifing" style="color: black">
@@ -160,6 +166,12 @@ export default {
 </script>
 
 <style scoped>
+.title{
+  margin-top: 0px !important;
+  text-align: center;
+  font-weight: normal;
+  font-size: 145%;
+}
 .login-container {
   background-image: url("../assets/login/loginImg.jpg");
   position: absolute;
@@ -168,15 +180,15 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 1502;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 1);
 }
 .login-page {
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  margin: 180px auto;
+  margin: 100px auto;
   width: 350px;
   padding: 35px 35px 15px;
-  background-color: rgba(81, 136, 136, 0.25);
+  background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid #5188883F;
   box-shadow: 0 0 25px #5188883F;
 }
