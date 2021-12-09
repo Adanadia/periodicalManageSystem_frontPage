@@ -79,15 +79,26 @@ export default {
               localStorage.setItem("token", response.data.data.authorization)
               // this.axios.defaults.headers.common['Authorization'] = token
               this.$router.push({path: '/main'})
+              this.$router.go(0)
             } else {
               this.logining = false
               this.$alert(response.data.msg, '提示', {
-                confirmButtonText: '重新登录'
+                confirmButtonText: '重新登录',
+                callback:action => {
+                  action.at(0)
+                  this.$router.go(0)
+                }
               })
             }
           })
         }else{
-          this.$alert("请输入用户名或密码", '提示', {confirmButtonText: '重试'})
+          this.$alert("请输入用户名或密码", '提示', {
+            confirmButtonText: '重试',
+            callback:action => {
+              action.at(0)
+              this.$router.go(0)
+            }
+          })
         }
       })
     },

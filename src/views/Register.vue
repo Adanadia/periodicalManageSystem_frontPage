@@ -145,17 +145,36 @@ export default {
                     }
                   }
               )
+              this.$router.go(0)
             }else{
               this.registering = false
-              this.$alert(response.data.msg, '提示', {confirmButtonText: '尝试重新注册'})
+              this.$alert(response.data.msg, '提示', {
+                confirmButtonText: '尝试重新注册',
+                callback:action => {
+                  action.at(0)
+                  this.$router.go(0)
+                }
+              })
             }
           })
         }
         else{
           if(this.checked === false){
-            this.$alert("请同意用户协议", '提示', {confirmButtonText: '尝试重新注册'})
+            this.$alert("请同意用户协议", '提示', {
+              confirmButtonText: '尝试重新注册',
+              callback:action => {
+                action.at(0)
+                this.$router.go(0)
+              }
+            })
           }else{
-            this.$alert("请查看输入表单是否正确", '提示', {confirmButtonText: '尝试重新注册'})
+            this.$alert("请查看输入表单是否正确", '提示', {
+              confirmButtonText: '尝试重新注册',
+              callback:action => {
+                action.at(0)
+                this.$router.go(0)
+              }
+            })
           }
         }
         }
