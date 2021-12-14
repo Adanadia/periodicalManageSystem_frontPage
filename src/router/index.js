@@ -4,6 +4,7 @@ import Login from '../views/Login'
 import MainPage from '../views/MainPage'
 import Notfound from "../views/Notfound";
 import Register from "@/views/Register";
+import BorrowPage from "@/views/BorrowPage";
 Vue.use(VueRouter)
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
   {
     path:'*',
     component: Notfound
+  },
+  {
+    path:'/borrow',
+    component: BorrowPage,
+    meta:{requireAuth: true}
   }
 ]
 

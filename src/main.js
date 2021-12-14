@@ -13,11 +13,11 @@ Vue.use(ElementUI)
 axios.defaults.baseURL = '/api'//用假数据注释掉
 
 axios.interceptors.request.use(function (config) {
-  console.log(config)
+  //console.log(config)
   if(typeof(config.data) == "object"){
     config.data = qs.stringify(config.data, {arrayFormat: 'brackets'})
   }
-  console.log(config)
+  //console.log(config)
   return config
 }, function (error) {
   // Do something with request error
@@ -29,7 +29,7 @@ Vue.config.productionTip = false
 let token = localStorage.getItem("token")
 if(token != null){
   axios.defaults.headers.common['Authorization'] = token;
-  console.log("token loaded")
+  //console.log("token loaded")
 }
 
 router.beforeEach((to, from, next) => {

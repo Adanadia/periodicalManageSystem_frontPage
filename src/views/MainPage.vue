@@ -1,33 +1,27 @@
 <template>
   <div>
-    <PeriodicalHeader></PeriodicalHeader>
-    <div class="block">
-      <el-carousel height="150px">
-        <el-carousel-item v-for="img in imglist" v-bind:key="img">
-          <img :src="img" alt/>
-        </el-carousel-item>
-      </el-carousel>
-    </div>
-    <div v-for="periodical in periodicalList" v-bind:key="periodical">
+<!--    <PeriodicalHeader></PeriodicalHeader>-->
+<!--    <div class="block">-->
+<!--      <el-carousel height="150px">-->
+<!--        <el-carousel-item v-for="(img,idx) in imglist" v-bind:key="'img-'+idx">-->
+<!--          <img :src="img" alt/>-->
+<!--        </el-carousel-item>-->
+<!--      </el-carousel>-->
+<!--    </div>-->
+    <div v-for="(periodical,idx) in periodicalList" v-bind:key="'periodical-' + idx">
       {{periodical.periodicalName}}
     </div>
     <div>{{userInfomation.userNum}}</div>
   </div>
 </template>
 <script>
-import PeriodicalHeader from "../compponents/PeriodicalHeader";
+// import PeriodicalHeader from "../components/PeriodicalHeader";
 export default {
-  components: {PeriodicalHeader},
+  // components: {PeriodicalHeader},
   data() {
     return{
       periodicalList:[],
-      userInfomation:'',
-      imglist:[
-        {
-          URL : require("../assets/mainimg/img1.png")
-        }
-      ]
-
+      userInfomation:''
     }
   },
   beforeRouteEnter:(to,from,next)=>{
@@ -38,6 +32,7 @@ export default {
   methods:{
     getData:function (){
       this.axios.get('/information').then(response=>{
+        //console.log(response.data.msg)
         if(response.data.status === 0){
           this.periodicalList = response.data.data.periodical;
           this.userInfomation = response.data.data.user_table;

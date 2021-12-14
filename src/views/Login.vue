@@ -38,7 +38,6 @@
         </el-col>
       </el-row>
       <el-form-item style="width:100%;margin-bottom: 0px">
-
         <a @click.once="register" style="color: #1482f0" href="#">
           注册新账号
         </a>
