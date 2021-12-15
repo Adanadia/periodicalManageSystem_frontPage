@@ -2,12 +2,14 @@
   <div>
     <el-row>
       <el-col :span="18">
-        <el-card
-            class="card borrow-card"
+        <el-card class="card borrow-card"
             shadow="hover"
             style="margin-top: 5px"
             :body-style="{ padding: '10px' }">
           <el-table
+              v-loading="loading"
+              element-loading-text="拼命加载中"
+              element-loading-spinner="el-icon-loading"
               :data="periodicalData.filter(data => !search || data.periodicalName.toLowerCase().includes(search.toLowerCase()))"
               style="width: 100%">
             <el-table-column
@@ -43,13 +45,13 @@
                   <el-col :span="12">
                     <el-button
                         size="mini"
-                        @click="handleBorrow(scope.$index, scope.row)">借阅</el-button>
+                        @click.once="handleBorrow(scope.$index, scope.row)">借阅</el-button>
                   </el-col>
                   <el-col :span="12">
                     <el-button
                         size="mini"
                         type="danger"
-                        @click="handleDetail(scope.$index, scope.row)">查看信息</el-button>
+                        @click.once="handleDetail(scope.$index, scope.row)">查看信息</el-button>
                   </el-col>
                 </el-row>
               </template>
@@ -124,6 +126,7 @@ export default {
   },
   data() {
     return {
+      loading:true,
       drawer: false,
       radio:'1',
       content:'',
@@ -135,7 +138,7 @@ export default {
   },
   methods: {
     handleBorrow:function(index, row) {
-      console.log(index, row);
+      //console.log(index, row);
       if(row.deposit > this.userTable.balance){
         this.$message("余额不足")
       }else{
@@ -149,7 +152,7 @@ export default {
             this.$message('借阅成功')
             setTimeout(()=>{
               this.$router.go(0)
-            },1000)
+            },1500)
 
           }else{
             this.$message('借阅失败')
@@ -158,7 +161,6 @@ export default {
       }
     },
     handleDetail:function(index,row) {
-      console.log(index, row);
       this.drawer = true
       this.axios.get(`borrow/search/detail/${row.periodicalName}/${row.year}/${row.volume}/${row.stage}`).then(response=>{
             if(response.data.status===0){
@@ -170,6 +172,7 @@ export default {
       this.axios.get('/borrow').then(response=>{
         //console.log(response.data.msg)
         if(response.data.status===0){
+          this.loading = false
           this.userTable = response.data.data.userInfo
           this.periodicalData = response.data.data.periodicalVOList
         }

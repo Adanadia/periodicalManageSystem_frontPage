@@ -5,6 +5,8 @@ import MainPage from '../views/MainPage'
 import Notfound from "../views/Notfound";
 import Register from "@/views/Register";
 import BorrowPage from "@/views/BorrowPage";
+import GoPage from "@/views/GoPage";
+import Reserve from "@/views/Reserve";
 Vue.use(VueRouter)
 
 const routes = [
@@ -36,6 +38,16 @@ const routes = [
   {
     path:'/borrow',
     component: BorrowPage,
+    meta:{requireAuth: true}
+  },
+  {
+    path:'/reserve',
+    component: Reserve,
+    meta:{requireAuth: true}
+  },
+  {
+    path:'/go',
+    component: GoPage,
     meta:{requireAuth: true}
   }
 ]
