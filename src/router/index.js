@@ -7,6 +7,8 @@ import Register from "@/views/Register";
 import BorrowPage from "@/views/BorrowPage";
 import GoPage from "@/views/GoPage";
 import Reserve from "@/views/Reserve";
+import AdminLogin from "@/views/admin/AdminLogin";
+import AdminOperate from "@/views/admin/AdminOperate";
 Vue.use(VueRouter)
 
 const routes = [
@@ -49,6 +51,19 @@ const routes = [
     path:'/go',
     component: GoPage,
     meta:{requireAuth: true}
+  },
+  {
+    path: '/admin',
+    component: AdminLogin
+  },
+  {
+    path:'/admin/index',
+    component: AdminOperate,
+    meta:{requireAuth: true}
+  },
+  {
+    path: '/admin/*',
+    redirect: '/admin/index'
   }
 ]
 

@@ -25,10 +25,10 @@
         ></el-input>
       </el-form-item>
       <el-row>
-        <el-col span="16">
+        <el-col :span="16">
           <el-checkbox v-model="checked" class="rememberme" style="color: black">记住密码</el-checkbox>
         </el-col>
-        <el-col span="8">
+        <el-col :span="8">
           <el-button type="primary"
                      style="width:100%;"
                      @click.once="handleSubmit"

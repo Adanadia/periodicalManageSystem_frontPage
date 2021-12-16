@@ -16,7 +16,10 @@ export default {
   },
   computed:{
     checkHeaderVisablity:function (){
-      return this.$route.path != '/login' && this.$route.path != '/register'
+      return this.$route.path != '/login'
+          && this.$route.path != '/register'
+          && this.$route.path != '/admin'
+          && this.$route.path != '/admin/index'
     }
   }
 }
