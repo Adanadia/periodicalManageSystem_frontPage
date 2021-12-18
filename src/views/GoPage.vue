@@ -100,7 +100,8 @@ export default {
           })
         }
         if(this.select === "2"){
-          this.axios.get(`/bookdestination/search/《${this.searchContent}》/${this.select}`).then(response=>{
+          this.searchContent = /《(.*)》/.test(this.searchContent)?this.searchContent:'《'+this.searchContent+'》'
+          this.axios.get(`/bookdestination/search/${this.searchContent}/${this.select}`).then(response=>{
             if(response.data.status === 0){
               this.userList = response.data.data.bookDestination_periodicalPageVOList;
             }else{

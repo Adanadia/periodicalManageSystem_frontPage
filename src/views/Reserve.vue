@@ -151,14 +151,14 @@ export default {
       }).then(reponse=>{
         if(reponse.data.status === 0){
           this.$message({
-            message: '恭喜你，预定成功',
+            message: '预定成功',
             type: 'success'
           });
           setTimeout(()=>{
             this.$router.go(0);
           },1400);
         } else {
-          this.$message.error('预定失败');
+          this.$message.error(reponse.data.msg);
         }
       })
     },
