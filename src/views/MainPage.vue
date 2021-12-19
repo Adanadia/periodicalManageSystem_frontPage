@@ -116,6 +116,19 @@
                   label="期"
                   width="120">
               </el-table-column>
+              <el-table-column
+                  fixed="right"
+                  label="操作"
+                  width="120">
+                <template slot-scope="scope">
+                  <el-button
+                      @click.native.prevent="cancelReserve(scope.$index, scope.row)"
+                      type="text"
+                      size="small">
+                    取消预定
+                  </el-button>
+                </template>
+              </el-table-column>
             </el-table>
           </div>
         </el-card>
@@ -176,9 +189,6 @@ export default {
       // 通过浏览器宽度(图片宽度)计算高度
       this.bannerHeight = (400 / 1920) * this.screenWidth;
     },
-
-
-
     deleteRow:function(index, row) {
       this.axios.put('/information/return',{
         periodical_name:row.periodicalName,
@@ -187,7 +197,7 @@ export default {
         stage:row.stage
       }).then(response=>{
         if(response.data.status === 0){
-          this.$message.success("归还成功");
+          this.$message.success(response.data.msg);
           setTimeout(()=>{
             this.$router.go(0)
           },1500);
@@ -196,7 +206,24 @@ export default {
         }
       })
     },
-
+    cancelReserve:function (index, row){
+      // console.log(index,row)
+      this.axios.put('/reserve/delete',{
+        periodical_name:row.periodicalName,
+        volume:row.volume,
+        year:row.year,
+        stage:row.stage
+      }).then(response=>{
+        if(response.data.status === 0){
+          this.$message.success(response.data.msg)
+          setTimeout(()=>{
+            this.$router.go(0)
+          },1500);
+        }else{
+          this.$message.error("处理错误")
+        }
+      })
+    },
     tableRowClassName({row, rowIndex}) {
       row;
       if (rowIndex === 1) {
